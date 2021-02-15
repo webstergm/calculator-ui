@@ -1,0 +1,8 @@
+<p>Result section:</p>
+
+<div
+  class="book-item"
+  *ngFor="let response of responses$ | async"
+>
+  <p>{{response.result}}</p>
+</div>

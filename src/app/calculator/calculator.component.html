@@ -1,0 +1,37 @@
+<form class="calculator-form">
+  <mat-form-field class="calculator-full-width">
+    <mat-label>First number</mat-label>
+    <input type="number"
+           matInput
+           [formControl]="firstNumberFormControl"
+           placeholder="First number"
+           [(ngModel)]="firstOperand">
+    <mat-hint>Errors appear instantly!</mat-hint>
+    <mat-error *ngIf="firstNumberFormControl.hasError('required')">
+      Number is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="calculator-full-width">
+    <mat-label>Second number</mat-label>
+    <input type="number"
+           matInput
+           [formControl]="secondNumberFormControl"
+           placeholder="Second number"
+           [(ngModel)]="secondOperand">
+    <mat-hint>Errors appear instantly!</mat-hint>
+    <mat-error *ngIf="secondNumberFormControl.hasError('required')">
+      Number is <strong>required</strong>
+    </mat-error>
+    <mat-error *ngIf="secondNumberFormControl.hasError('forbiddenValue')">
+      Number cannot be <strong>zero</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <div class="example-button-row">
+    <button (click)="doOperation('add')" mat-raised-button>Add</button>
+    <button (click)="doOperation('subtract')" mat-raised-button color="primary">Subtract</button>
+    <button (click)="doOperation('multiply')" mat-raised-button color="accent">Multiply</button>
+    <button (click)="doOperation('divide')" mat-raised-button color="warn" [disabled]="isSecondOperatorZero()">Divide</button>
+  </div>
+</form>
